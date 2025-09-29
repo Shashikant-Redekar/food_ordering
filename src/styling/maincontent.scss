@@ -1,0 +1,16 @@
+.menu-container{
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.mainmenu{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 150px;
+}
+
+.dish-container{
+    width: 70%;
+}

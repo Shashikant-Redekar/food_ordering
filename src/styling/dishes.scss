@@ -1,0 +1,18 @@
+.dish-info{
+    margin: 0;
+}
+
+.dish-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1 rem;
+    padding: 0.5 rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.counter{
+    display: flex;
+    align-items: center;
+    gap: 0.5 rem;
+}
