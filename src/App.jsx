@@ -3,10 +3,15 @@ import Cart from "./Components/cart";
 import Signup from "./Components/signup";
 import Login from "./Components/login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ApolloClient, InMemoryCache, ApolloProvider} from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink} from "@apollo/client";
+
+const httpLink = createHttpLink ({
+  uri: "http://localhost:4000",
+  credentials: "include"
+})
 
 const client = new ApolloClient ({
-  uri: "http://localhost:4000",
+  link: httpLink,
   cache: new InMemoryCache({ 
     typePolicies: {
       Dish: {
