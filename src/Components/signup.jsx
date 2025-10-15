@@ -51,6 +51,7 @@ function Signup () {
 
             if(!data.signup.success){
                 setError(data.signup.message);
+                console.log(error)
                 return;
             }
             alert("Sign Up Successful!")

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NameAndLogo from "./Header";
+import { useNavigate } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
 
 const USER = gql`
@@ -13,7 +14,7 @@ mutation Mutation($email: String!, $password: String!) {
 }
 `
 
-function Login () {
+function Login ({ setToken }) {
         const [ formData, setFormData ] = useState({
         email:"",
         password:""
@@ -21,6 +22,8 @@ function Login () {
 
     const [ error, setError ] = useState({});
     const [ user ] = useMutation(USER);
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -43,8 +46,6 @@ function Login () {
         try{
            const { data } = await user({ variables: { email: formData.email, password: formData.password } });
 
-           console.log(data.login.token);
-
             if(!data.login.success){
                 if(data.login.message === "User not found"){
                     const err = {
@@ -61,7 +62,12 @@ function Login () {
                 }
                 return;
             }
+            const token = data.login.token;
+            localStorage.setItem("jwt", token);
+            setToken(token)
             alert("Login Successful!")
+            navigate("/")
+            setTimeout(() => {navigate("/orders");}, 1000);
         }catch(err){
             console.error(err)
         }
