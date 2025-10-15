@@ -31,6 +31,21 @@ const resolvers = {
         },
         menu: async (_, { id }) => {
             return await Menu.findOne({ id })
+        },
+        orders: async (_,__,{ user }) => {
+            if(!user){
+                throw new Error("Not authenticated");
+            }
+            const name = await Name.find();
+            const tnumber = await Tnumber.find();
+            const orders = await Order.find();
+            return[
+                {
+                    name: name,
+                    number: tnumber,
+                    order: orders
+                }
+            ]
         }
     },
 
@@ -111,12 +126,18 @@ const resolvers = {
         async signup ( _, { email, password }) {
 
             try{
-                console.log(email);
-                console.log(password)
+
+                if(password.length < 7){
+                    return{
+                        code: 400,
+                        success: false,
+                        message: {error:'',password:"password length must be greater than 7 charecters"},
+                        user: null
+                    }
+                }
+
                 const salt = await genSalt();
-                console.log(salt);
                 const hashedPassword = await hash(password, salt);
-                console.log(hashedPassword);
                 const newUser = await User.create({ email,password: hashedPassword })
 
                 return{
@@ -149,10 +170,10 @@ const resolvers = {
                             expiresIn:"1hr"
                         });
 
-                    res.setHeader(
-                    'Set-Cookie',
-                    `token=${token}; HttpOnly; Path=/; Max-Age=3600; SameSite=Lax`
-                    );
+                    // res.setHeader(
+                    // 'Set-Cookie',
+                    // `token=${token}; Path=/; Max-Age=3600; SameSite=Lax`
+                    // );
 
                         return {
                             code: 200,
@@ -180,7 +201,7 @@ const resolvers = {
                 return {
                     code: 500,
                     success: false,
-                    message: { general:"Internal Server Error!!"},
+                    message: "Internal Server Error!!",
                     token: null
                 }
             }

@@ -5,6 +5,7 @@ const typeDefs = gql`
 type Query {
     menuForResturant : [Menu!]!
     menu(id: Int!): Menu!
+    orders: [Orders!]!
 }
 
 type Mutation {
@@ -94,6 +95,12 @@ type User {
 type Error {
     email: String
     password: String
+}
+
+type Orders {
+    name: [ Name!]!
+    number: [Tnumber!]!
+    order: [OrDish!]!
 }
 
 `

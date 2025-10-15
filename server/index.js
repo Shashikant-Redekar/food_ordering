@@ -3,8 +3,11 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import typeDefs from './scheme.js';
 import resolvers from "./dataSource/resolvers.js";
 import mongoose from "mongoose";
+import pkg from "jsonwebtoken";
+const { verify } = pkg;
 
 const baseURL = "mongodb+srv://Shashikant:lGBjRbIT9zDooCUu@foodordering.ggxgsgt.mongodb.net/SukoonSagar?retryWrites=true&w=majority&appName=FoodOrdering";
+const JWT_SECRET = "Shashikant";
 
 mongoose.connect( baseURL,
     { useNewUrlParser: true, useUnifiedTopology: true }
@@ -16,17 +19,33 @@ async function startApolloServer() {
   const server = new ApolloServer({ 
     typeDefs,
     resolvers,
-
    });
-  const { url } = await startStandaloneServer(server, { context: ({ req, res }) => ({ req, res }),
-    listen: {port: 4000},
-    cors: {
-      origin: "http://localhost:5173",
-      credentials: true,
-      allowedHeaders: ["Content-Type", "Authorization"],
-      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    }
+
+   const corsOperations = {
+    origin: "http://localhost:5173",
+    credentials: true
+   };
+
+  const { url } = await startStandaloneServer(server, {
+
+    context: async ({ req }) => {
+      // Get token from headers
+      const authHeader = req.headers.authorization || "";
+      const token = authHeader.replace("Bearer ", "");
+
+      if (!token) return { user: null };
+
+      try {
+        const user = verify(token, JWT_SECRET);
+        return { user };
+      } catch (err) {
+        console.log("Invalid token:", err.message);
+        return { user: null };
+      }
+    },
+    cors: corsOperations,
 } );
+
   console.log(`
     Server is running....
     Query at ${ url }
