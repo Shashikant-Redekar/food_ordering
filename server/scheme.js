@@ -24,6 +24,7 @@ type addNameResponse {
 }
 
 type Name {
+    _id : ID!
     name : String!
 }
 
@@ -35,6 +36,7 @@ type addTnumberResponse {
 }
 
 type Tnumber {
+    _id : ID!
     tnumber : Int!
 }
 

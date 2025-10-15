@@ -11,9 +11,11 @@ query Orders {
       count
     }
     name {
+      _id
       name
     }
     number {
+      _id
       tnumber
     }
   }
@@ -26,6 +28,8 @@ function Orders () {
     if(loading) return 'Loading...';
 
     if(error) return `ERROR! ${error.message}`;
+
+    console.log(data)
 
     return (
         <div>
@@ -57,6 +61,7 @@ function Orders () {
                                                                             }
                                                                         })
                                                                     }
+                                                                    <button>order served</button>
                                                                 </div>
                                                             )
                                                         }
