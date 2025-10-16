@@ -205,6 +205,24 @@ const resolvers = {
                     token: null
                 }
             }
+        },
+        async deleteOrder(_, {index, nameId, tnumberId}){
+            try{
+                await Order.deleteMany({ index });
+                await Tnumber.deleteOne({ _id: tnumberId });
+                await Name.deleteOne({ _id: nameId });
+                return{
+                    code: 200,
+                    success: true,
+                    message: "Order is served and deleted from database."
+                }
+            }catch(err){
+                return{
+                    code: 500,
+                    success: false,
+                    message: "Failed to delete Orders, name or Table number."
+                }
+            }
         }
     }
 };

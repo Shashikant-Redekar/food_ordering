@@ -14,6 +14,7 @@ type Mutation {
     addOrder ( ordish: OrDishin!) : addOrderResponse
     signup( email: String!, password: String!) : signUpResponse
     login( email: String!, password: String!) : loginResponse
+    deleteOrder(index: String!, nameId: ID!, tnumberId: ID!) : deleteResponse
 }
 
 type addNameResponse {
@@ -105,6 +106,11 @@ type Orders {
     order: [OrDish!]!
 }
 
+type deleteResponse{
+    code: Int!
+    success: Boolean!
+    message: String!
+}
 `
 
 export default typeDefs;
