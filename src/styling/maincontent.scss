@@ -1,16 +1,62 @@
 .menu-container{
     display: flex;
-    gap: 20px;
+    gap: 24px;
     align-items: flex-start;
+    height: 100vh;
+    padding: 24px 32px;
+    background: #f4fdf7;
+    font-family: "Inter", sans-serif;
+    color: #222;
 }
 
 .mainmenu{
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    min-width: 150px;
+    gap: 12px;
+    min-width: 220px;
+    background: #a8e6cf;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.menubut{
+    all: unset;
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1b3a2a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+        background: #1b3c2c;
+        color: #fff;
+    }
+    &.active {
+        background: #2e7d32;
+        color: #fff;
+        font-weight: 600;
+        box-shadow: 0 2px 6px rgba(46, 125, 50, 0.4);
+    }
 }
 
 .dish-container{
-    width: 70%;
+    flex: 1;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    padding: 30px;
+    overflow-y: auto;
+    height: calc(100vh - 48px);
+}
+
+.p {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+    margin-top: 100px;
 }

@@ -10,3 +10,24 @@
     display: flex;
     justify-content: space-between;
 }
+
+.link{
+    align-content: center;
+}
+
+.cart{
+    margin-left: auto;
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: large;
+
+    &:hover {
+        background: #45a049;
+    }
+}

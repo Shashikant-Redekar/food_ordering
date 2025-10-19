@@ -11,8 +11,8 @@ function NameAndLogo ({ showCartButton = true }) {
                 <img src={name} className="App-name" alt="name" />
             </div>
             { showCartButton && (
-                <Link to="/cart">
-                    <button>Cart</button>
+                <Link to="/cart" className='link'>
+                    <button className='cart'>Cart</button>
                 </Link>
             )}
         </div>

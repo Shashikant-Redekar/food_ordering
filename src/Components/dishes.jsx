@@ -59,11 +59,9 @@ const Dish = (props) => {
 
     if(error) return (`ERROR! ${error}`);
 
-    console.log(cart);
-
     return(
-        <div>
-            <div>
+        <div className='container'>
+            <div className='menutitle'>
                 <p>{data.menu.menuName}</p>
             </div>
             <div>
@@ -74,8 +72,8 @@ const Dish = (props) => {
                         found ? count=found.count : count=0
                         return (<div key={index} className='dish-info'>
                             <ul className='dish-row'>
-                                <p>{dish.dname}</p>
-                                <p>{dish.price}</p>
+                                <p className='dishname'>{dish.dname}</p>
+                                <p className='price'>{dish.price}</p>
                                 {(count === 0) ? (<button onClick={() => handleAddNew(dish)}>ADD</button>):(<div className='counter'><button onClick={() => handleSub(dish)}>-</button> <p>{count}</p> <button onClick={() => handleAdd(dish)}>+</button></div>)}
                             </ul>
                         </div>

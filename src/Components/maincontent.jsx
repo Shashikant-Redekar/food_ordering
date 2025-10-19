@@ -26,7 +26,7 @@ const Menu = () => {
                 data.menuForResturant.map((menu,index) => (
                     <div key={index}>
                         <ul>
-                            <button onClick={() => setSelectedId(menu.id)}>{menu.menuName}</button>
+                            <button onClick={() => setSelectedId(menu.id)} className={`menubut ${selectedId === menu.id ? "active" : ""}`}>{menu.menuName}</button>
                         </ul>
                     </div>
                 ))
@@ -36,7 +36,7 @@ const Menu = () => {
                     selectedId ? (
                         <Dish id={selectedId}/>
                     ) : (
-                        <p>Please select from menu to display the dishes...</p>
+                        <p className='p'>Please select from menu to display the dishes...</p>
                     )
                 }
             </div>
