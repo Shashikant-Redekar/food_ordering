@@ -5,7 +5,7 @@ import '../styling/nameandlogo.scss';
 
 function NameAndLogo ({ showCartButton = true }) {
     return(
-        <div className='nameandlogo'>
+        <div className={`nameandlogo ${showCartButton ? 'with-cart' : 'no-cart'}`}>
             <img src={logo} className="App-logo" alt="logo" />
             <div >
                 <img src={name} className="App-name" alt="name" />

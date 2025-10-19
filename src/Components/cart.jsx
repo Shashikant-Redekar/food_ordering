@@ -1,5 +1,4 @@
-import logo from '../logo/sukoonsagarlogo-1.png';
-import name from '../logo/SukunSagarLogo2.png';
+import NameAndLogo from "./Header";
 import '../styling/nameandlogo.scss';
 import { useState, useEffect } from 'react';
 import "../styling/cart.scss";
@@ -115,33 +114,30 @@ const Cart = () => {
 
     return (
         <div>
-            <div className='nameandlogo'>
-                <img src={logo} className="App-logo" alt="logo" />
-                <div >
-                    <img src={name} className="App-name" alt="name" />
-                </div>
-            </div>
-            <h2>Your Cart</h2>
-            <p>Enter your table number:</p>
-            <input id="tableNumber" name='number' type='number' placeholder='7' onChange={e => setTNumber(e.target.value)} value={tNumber}></input>
-            <p>Enter your name:</p>
-            <input id="personName" name='name' type='text' placeholder='Shashikant' onChange={e => setPName(e.target.value)} value={pName}></input>
-            {cart.length === 0 ? (
-                <p>No items in cart</p>
-            ) : (
-                cart.map((item, index) => (
-                <div key={index} className='item-list'>
-                    <p>{item.dname}</p>
-                    <p>₹{item.price}</p>
-                    <div className='item-counter'>
-                        <button onClick={() => handleSub(item)}>-</button>
-                        <p>{item.count}</p>
-                        <button onClick={() => handleAdd(item)}>+</button>
+            <NameAndLogo showCartButton={false} />
+            <div className='cart1'>
+                <h2 className='yc'>Your Cart</h2>
+                <p className='tname'>Enter your table number</p>
+                <input id="tableNumber" name='number' type='number' placeholder='7' onChange={e => setTNumber(e.target.value)} value={tNumber}></input>
+                <p className='ename'>Enter your name</p>
+                <input id="personName" name='name' type='text' placeholder='Shashikant' onChange={e => setPName(e.target.value)} value={pName}></input>
+                {cart.length === 0 ? (
+                    <p>No items in cart</p>
+                ) : (
+                    cart.map((item, index) => (
+                    <div key={index} className='item-list'>
+                        <p className='dishname'>{item.dname}</p>
+                        <p className='price'>₹{item.price}</p>
+                        <div className='item-counter'>
+                            <button onClick={() => handleSub(item)}>-</button>
+                            <p>{item.count}</p>
+                            <button onClick={() => handleAdd(item)}>+</button>
+                        </div>
                     </div>
-                </div>
-                ))
-            )}
-            <button onClick={() => handleSubmit()} disabled={cart.length === 0}>Submit Order</button>
+                    ))
+                )}
+                <button onClick={() => handleSubmit()} disabled={cart.length === 0} className='submitOrder'>Submit Order</button>
+            </div>
         </div>
     );
 };
