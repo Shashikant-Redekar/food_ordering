@@ -1,0 +1,88 @@
+.signUp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    padding: 40px 60px;
+    background: #ffffff;
+    width: 450px;
+    margin-inline: auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+    font-family: "Inter", sans-serif;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+.emailf, .passf {
+    display: block; 
+    width: 80%;
+    max-width: 300px;
+    margin: 0 auto; 
+    text-align: left; 
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px 14px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 15px;
+        outline: none;
+        transition: all 0.2s ease;
+
+        &:focus {
+            border-color: #4caf50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+    }
+}
+
+.su {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2e7d32;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.susubmit {
+    background: #4caf50;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    padding: 12px 0;
+    border-radius: 8px;
+    width: 120px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s ease, transform 0.1s ease;
+
+    &:hover {
+        background: #43a047;
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+.error{
+    color: red;
+}

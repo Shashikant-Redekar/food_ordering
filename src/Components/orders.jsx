@@ -65,7 +65,7 @@ function Orders () {
 
     return (
         <div>
-            <NameAndLogo showCartButton={false}/>
+            <NameAndLogo showCartButton={false} showLogOut={true}/>
             <div>
                 {
                     data.orders.map((n, i) => {

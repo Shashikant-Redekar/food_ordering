@@ -2,6 +2,7 @@ import { useState } from "react";
 import NameAndLogo from "./Header";
 import { useNavigate } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
+import "../styling/signup.scss";
 
 const USER = gql`
 mutation Mutation($email: String!, $password: String!) {
@@ -75,21 +76,21 @@ function Login ({ setToken }) {
 
     return (
         <div>
-            <NameAndLogo showCartButton={false} />
-            <div>
-                <h2>Login</h2>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>Email</label>
+            <NameAndLogo showCartButton={false} showSignupButton={true} />
+            <div className="signUp">
+                <h2 className="su">Login</h2>
+                <form onSubmit={handleSubmit} className="form">
+                    <div className="emailf">
+                        <label className="email">Email</label>
                         <input name="email" value={formData.email} onChange={handleChange}></input>
-                        {error.email && <p>{error.email}</p>}
+                        {error.email && <p className="error">{error.email}</p>}
                     </div>
-                    <div>
-                        <label>Password</label>
-                        <input name="password" value={formData.password} onChange={handleChange} />
-                        {error.password && <p>{error.password}</p>}
+                    <div className="passf">
+                        <label className="pass">Password</label>
+                        <input type="password" name="password" value={formData.password} onChange={handleChange} />
+                        {error.password && <p className="error">{error.password}</p>}
                     </div>
-                    <button type="submit">Login</button>
+                    <button type="submit" className="susubmit">Login</button>
                 </form>
             </div>
         </div>

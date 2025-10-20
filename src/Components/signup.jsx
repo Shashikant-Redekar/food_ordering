@@ -1,6 +1,7 @@
 import { useState } from "react";
 import NameAndLogo from "./Header";
 import { gql, useMutation } from "@apollo/client";
+import '../styling/signup.scss';
 
 const NEW_USER = gql`
 mutation Signup($email: String!, $password: String!) {
@@ -62,21 +63,21 @@ function Signup () {
 
     return (
         <div>
-            <NameAndLogo showCartButton={false} />
-            <div>
-                <h2>Sign Up</h2>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>Email</label>
+            <NameAndLogo showCartButton={false} showLoginButton={true} />
+            <div className="signUp">
+                <h2 className="su">Sign Up</h2>
+                <form onSubmit={handleSubmit} className="form">
+                    <div className="emailf">
+                        <label className="email">Email</label>
                         <input name="email" value={formData.email} onChange={handleChange}></input>
-                        {error.email && <p>{error.email}</p>}
+                        {error.email && <p className="error">{error.email}</p>}
                     </div>
-                    <div>
-                        <label>Password</label>
-                        <input name="password" value={formData.password} onChange={handleChange} />
-                        {error.password && <p>{error.password}</p>}
+                    <div className="passf">
+                        <label className="pass">Password</label>
+                        <input type="password" name="password" value={formData.password} onChange={handleChange} />
+                        {error.password && <p className="error">{error.password}</p>}
                     </div>
-                    <button type="submit">Sign Up</button>
+                    <button type="submit" className="susubmit">Sign Up</button>
                 </form>
             </div>
         </div>
