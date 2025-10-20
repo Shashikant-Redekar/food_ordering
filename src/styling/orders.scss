@@ -37,4 +37,24 @@
     padding: 8px 12px;
     background: #e6f4ea; // light green for veg orders
     border-radius: 8px;
-    font-size: 16
+    font-size: 16px;
+    font-weight: 500;
+    color: #2d572c; // dark green text
+}
+
+.servedbutton {
+    align-self: flex-end; // push to right
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 16px;
+
+    &:hover {
+        background: #45a049;
+    }
+}

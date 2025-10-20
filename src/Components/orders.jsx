@@ -1,6 +1,6 @@
 import NameAndLogo from "./Header";
 import { useQuery, gql, useMutation } from '@apollo/client';
-
+import "../styling/orders.scss";
 
 const ORDER = gql`
 query Orders {
