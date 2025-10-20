@@ -1,8 +1,9 @@
 import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
+import React from "react";
 
-export default function ProtectedRoute({ children }) {
+export default function ProtectedRoute({ children, setToken }) {
   const navigate = useNavigate();
 
   const token = localStorage.getItem("jwt");
@@ -48,5 +49,5 @@ export default function ProtectedRoute({ children }) {
     return <Navigate to="/login" replace />;
   }
 
-  return children;
+  return React.cloneElement(children, { setToken });
 }

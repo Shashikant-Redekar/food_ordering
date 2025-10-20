@@ -46,7 +46,7 @@ const client = new ApolloClient ({
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login setToken={ setToken }/>} />
           <Route path="/orders" element={
-            <ProtectedRoute>
+            <ProtectedRoute setToken = { setToken }>
               <Orders />
             </ProtectedRoute>
           } />

@@ -3,7 +3,13 @@ import logo from '../logo/sukoonsagarlogo-1.png';
 import name from '../logo/SukunSagarLogo2.png';
 import '../styling/nameandlogo.scss';
 
-function NameAndLogo ({ showCartButton = true, showLoginButton = false, showSignupButton = false, showLogOut = false }) {
+function NameAndLogo ({ showCartButton = true, showLoginButton = false, showSignupButton = false, showLogOut = false, setToken }) {
+
+    const handleLogOut = () => {
+        localStorage.removeItem("jwt");
+        setToken(null);
+    }
+
     return(
         <div className={`nameandlogo ${showCartButton||showLoginButton||showSignupButton||showLogOut ? 'with-cart' : 'no-cart'}`}>
             <img src={logo} className="App-logo" alt="logo" />

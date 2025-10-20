@@ -1,6 +1,7 @@
 import NameAndLogo from "./Header";
 import { useQuery, gql, useMutation } from '@apollo/client';
 
+
 const ORDER = gql`
 query Orders {
   orders {
@@ -32,7 +33,7 @@ mutation DeleteOrder($index: String!, $nameId: ID!, $tnumberId: ID!) {
 }
 `
 
-function Orders () {
+function Orders ({ setToken }) {
     const {loading, error, data, refetch } = useQuery(ORDER);
     const [ deleteOrder ] = useMutation(DELETE);
 
@@ -65,8 +66,8 @@ function Orders () {
 
     return (
         <div>
-            <NameAndLogo showCartButton={false} showLogOut={true}/>
-            <div>
+            <NameAndLogo showCartButton={false} showLogOut={true} setToken={ setToken } />
+            <div className="orders">
                 {
                     data.orders.map((n, i) => {
                         return(
@@ -80,20 +81,20 @@ function Orders () {
                                                         if(j === k){
                                                             const ind = na.name+nu.tnumber;
                                                             return(
-                                                                <div key={k}>
-                                                                    <p>{na.name} from table number {nu.tnumber}</p>
+                                                                <div key={k} className="oneorder">
+                                                                    <p className="nameandtable">{na.name} from table number {nu.tnumber}</p>
                                                                     {
                                                                         n.order.map((or, l) => {
                                                                             if(or.index === ind){
                                                                                 return(
-                                                                                    <div key= {l}>
-                                                                                        <ul>{or.dname} X {or.count}</ul>
+                                                                                    <div key= {l} className="orderlist">
+                                                                                        <ul className="order">{or.dname} X {or.count}</ul>
                                                                                     </div>
                                                                                 )
                                                                             }
                                                                         })
                                                                     }
-                                                                    <button  onClick={() => handleDeleteOrder(ind, na._id, nu._id)}>order served</button>
+                                                                    <button  onClick={() => handleDeleteOrder(ind, na._id, nu._id)} className="servedbutton">order served</button>
                                                                 </div>
                                                             )
                                                         }
